@@ -1,0 +1,4 @@
+?
+- Nur gerade aus vs. Richtungswechsel (Temple Run)
+	Bzw. Richtungswechsel Interaktion nötig?
+- ...
