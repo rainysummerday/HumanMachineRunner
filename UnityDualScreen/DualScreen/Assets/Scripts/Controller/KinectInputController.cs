@@ -6,9 +6,8 @@ namespace Assets.Scripts.Controller
 {
     public class KinectInputController {
 
-        private KinectInputModel _kinectInputModel;
-        private PlayerController _playerController;
-        private string _string = ""; 
+        private readonly KinectInputModel _kinectInputModel;
+        private readonly PlayerController _playerController;
 
         public KinectInputController(KinectInputModel kinectInputModel, PlayerController playerController)
         {
@@ -20,19 +19,24 @@ namespace Assets.Scripts.Controller
         {
             switch (kinectInput)
             {
-                case "idle":
+                default:
                     _kinectInputModel.Kinectmove= KinectInputModel.KINECTMOVE.KINNECTMOVE_IDLE;
                     _playerController.HandleInput();
                     break;
                 case "jump":
-                    if(_kinectInputModel.Kinectmove != KinectInputModel.KINECTMOVE.KINNECTMOVE_JUMPING)
+                    if (_kinectInputModel.Kinectmove != KinectInputModel.KINECTMOVE.KINNECTMOVE_JUMPING)
+                    {
                         _kinectInputModel.Kinectmove = KinectInputModel.KINECTMOVE.KINNECTMOVE_JUMPING;
                         _playerController.HandleInput();
+                    }
                     break;
                 case "duck":
                     if (_kinectInputModel.Kinectmove != KinectInputModel.KINECTMOVE.KINNECTMOVE_DUCKING)
+                    {
                         _kinectInputModel.Kinectmove = KinectInputModel.KINECTMOVE.KINNECTMOVE_DUCKING;
-                    _playerController.HandleInput();
+                        _playerController.HandleInput();
+                    }
+                   
                     break;
                 case "left":
                     _kinectInputModel.Kinectmove = KinectInputModel.KINECTMOVE.KINNECTMOVE_LANELEFT;
@@ -43,11 +47,6 @@ namespace Assets.Scripts.Controller
                     _playerController.HandleInput();
                     break;
             }
-        }
-
-        public string ReturnDebugLog()
-        {
-            return _string;
         }
     }
 }

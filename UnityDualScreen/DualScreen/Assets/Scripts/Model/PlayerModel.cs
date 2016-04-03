@@ -20,8 +20,8 @@ namespace Assets.Scripts.Model
             LANE_RIGHT
         }
 
-        private STATE _currentPlayerState;
-        private LANE _currentPlayerLane;
+        private readonly STATE _currentPlayerState;
+        private readonly LANE _currentPlayerLane;
         
         public PlayerModel(STATE currentPlayerState, LANE currentPlayerLane)
         {

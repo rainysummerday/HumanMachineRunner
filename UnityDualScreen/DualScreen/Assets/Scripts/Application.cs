@@ -44,10 +44,9 @@ namespace Assets.Scripts
         private void PrintVerbose()
         {
             // VERBOSE
-           Debug.Log("KinectInputModel State:" + _kinectInputModel.VerboseKinectMove());
-           Debug.Log("PlayerModel State:" + _playerModel.VerbosePlayerState());
-           Debug.Log("PlayerModel Lane:" + _playerModel.VerbosePlayerLane());
-          // Debug.Log("PlayerModel Lane:" + _kinectInputController);
+           Debug.Log("KinectInputModel State:" + _kinectInputModel.Kinectmove.ToString());
+           Debug.Log("PlayerModel State:" + _playerModel.CurrentPlayerState.ToString());
+           Debug.Log("PlayerModel Lane:" + _playerModel.CurrentPlayerLane.ToString());
         }
     }
 }

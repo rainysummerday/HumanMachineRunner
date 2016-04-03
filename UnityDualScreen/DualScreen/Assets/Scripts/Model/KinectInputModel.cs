@@ -13,7 +13,7 @@ namespace Assets.Scripts.Model
             KINECTMOVE_LANERIGHT = 4
         }
 
-        private KINECTMOVE _kinectMoveState;
+        private readonly KINECTMOVE _kinectMoveState;
 
         public KinectInputModel(KINECTMOVE kinectMoveState)
         {
