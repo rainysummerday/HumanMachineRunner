@@ -19,27 +19,18 @@ namespace Assets.Scripts.Model
             LANE_MIDDLE,
             LANE_RIGHT
         }
-
-        private readonly STATE _currentPlayerState;
-        private readonly LANE _currentPlayerLane;
         
-        public PlayerModel(STATE currentPlayerState, LANE currentPlayerLane)
+        public PlayerModel(STATE currentPlayerState, LANE currentPlayerLane, Vector3 playerPositionVector3)
         {
-            _currentPlayerState = currentPlayerState;
-            _currentPlayerLane = currentPlayerLane;
+            CurrentPlayerState = currentPlayerState;
+            CurrentPlayerLane = currentPlayerLane;
+            PlayerPositionVector3 = playerPositionVector3;
         }
 
         public STATE CurrentPlayerState { get; set; }
         public LANE CurrentPlayerLane { get; set; }
 
-        public string VerbosePlayerState()
-        {
-            return _currentPlayerState.ToString();
-        }
+        public Vector3 PlayerPositionVector3 { get; set; }
 
-        public string VerbosePlayerLane()
-        {
-            return _currentPlayerLane.ToString();
-        }
     }
 }

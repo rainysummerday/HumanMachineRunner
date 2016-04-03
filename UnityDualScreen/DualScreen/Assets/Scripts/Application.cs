@@ -5,29 +5,31 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts
 {
-    public class Application : MonoBehaviour
+    public class  Application : MonoBehaviour
     {
-        private KinectInputModel _kinectInputModel;
-        private PlayerModel _playerModel;
-        private PlayerController _playerController;
-        private KinectInputController _kinectInputController;
+        // initialize MVC
+        private static KinectInputModel _kinectInputModel = new KinectInputModel(KinectInputModel.KINECTMOVE.KINNECTMOVE_IDLE);
+        private static PlayerModel _playerModel = new PlayerModel(PlayerModel.STATE.STATE_STANDING, PlayerModel.LANE.LANE_MIDDLE, Vector3.zero);
+        private static PlayerController _playerController = new PlayerController(_playerModel, _kinectInputModel);
+        private static KinectInputController _kinectInputController = new KinectInputController(_kinectInputModel, _playerController);
 
         private static bool VERBOSE = true;
+        
 
-        // Use this for initialization
+        public float PlayerJumpSpeed = 0.5f;
+        public float PlayerRunSpeed = 0.1f;
+
         public void Start () {
-
-            // Initalize MVC
-            _kinectInputModel = new KinectInputModel(KinectInputModel.KINECTMOVE.KINNECTMOVE_IDLE);
-            _playerModel = new PlayerModel(PlayerModel.STATE.STATE_STANDING, PlayerModel.LANE.LANE_MIDDLE);
-            _playerController = new PlayerController(_playerModel, _kinectInputModel);
-            _kinectInputController = new KinectInputController(_kinectInputModel, _playerController);
         }
 	
-        // Update is called once per frame
+
         private void Update () {
-            // handle all actions
-          //  _kinectInputController.HandleKinectInput("jump");
+        
+            // UPDATE METHODES from CONTROLLER
+            _playerController.Update(PlayerRunSpeed , PlayerJumpSpeed);
+            _kinectInputController.Update();
+
+
             if (VERBOSE)
             {
                 if (Input.GetKeyDown(KeyCode.V))
@@ -36,10 +38,7 @@ namespace Assets.Scripts
                     PrintVerbose();
                 }
             }
-
-
         }
-
 
         private void PrintVerbose()
         {
@@ -48,5 +47,18 @@ namespace Assets.Scripts
            Debug.Log("PlayerModel State:" + _playerModel.CurrentPlayerState.ToString());
            Debug.Log("PlayerModel Lane:" + _playerModel.CurrentPlayerLane.ToString());
         }
+
+
+        public static PlayerModel GetPlayerModel()
+        {
+            return _playerModel;
+        }
+        public static KinectInputModel GetKinectInputModel()
+        {
+            return _kinectInputModel;
+        }
+
+        
     }
+
 }

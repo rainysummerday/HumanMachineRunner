@@ -48,5 +48,10 @@ namespace Assets.Scripts.Controller
                     break;
             }
         }
+
+        public void Update()
+        {
+            
+        }
     }
 }

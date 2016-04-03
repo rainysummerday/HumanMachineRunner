@@ -1,5 +1,6 @@
 ﻿using System;
 using Assets.Scripts.Model;
+using UnityEngine;
 
 namespace Assets.Scripts.Controller
 {
@@ -40,6 +41,19 @@ namespace Assets.Scripts.Controller
                     break;
                 default:
                     throw new ArgumentOutOfRangeException("PlayerController " + "Wrong HandleInput value");
+            }
+        }
+
+
+        public void Update(float playerForwardMove, float playerJumpSpeed)
+        {
+            _playerModel.PlayerPositionVector3 += Vector3.forward * playerForwardMove;
+
+            // check if jump -> jump -> reset PlayerState to Standing
+            if (_playerModel.CurrentPlayerState == PlayerModel.STATE.STATE_JUMPING)
+            {
+                _playerModel.PlayerPositionVector3 += Vector3.up * playerJumpSpeed;
+                // TODO: PLAY ANIMATION -> ON STOP RESET PLAYER STATE
             }
         }
     }
